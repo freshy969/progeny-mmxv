@@ -10,21 +10,66 @@
 /**
  * Set up theme defaults and register support for various AudioTheme features.
  *
- * @since 1.1.0
+ * @since 1.0.0
  */
 function progeny_audiotheme_setup() {
-	// Add support for AudioTheme widgets.
-	add_theme_support( 'audiotheme-widgets', array(
-		'record',
-		'track',
-		'upcoming-gigs',
-		'video',
-	) );
-
-	add_image_size( 'record-thumbnail', 672, 672, true );
-	add_image_size( 'video-thumbnail', 672, 378, true );
+	add_image_size( 'record-thumbnail', 748, 748, true );
+	add_image_size( 'video-thumbnail', 748, 420, true );
 }
 add_action( 'after_setup_theme', 'progeny_audiotheme_setup', 11 );
+
+/**
+ * Enqueue scripts and styles for front-end.
+ *
+ * @since 1.0.0
+ */
+function progeny_audiotheme_enqueue_assets() {
+	// Enqueue AudioTheme's Fitvids script
+	if ( is_singular( 'audiotheme_video' ) ) {
+		wp_enqueue_script( 'jquery-fitvids' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'progeny_audiotheme_enqueue_assets', 20 );
+
+/**
+ * Enqueue scripts and styles for front-end.
+ *
+ * @since 1.0.0
+ */
+function progeny_audiotheme_document_head() {
+	// Call AudioTheme's Fitvids script.
+	if ( is_singular( 'audiotheme_video' ) && wp_script_is( 'jquery-fitvids' ) ) {
+		echo '<script>jQuery(function($){ $(".hentry").fitVids(); });</script>' . "\n";
+	}
+}
+add_action( 'wp_head', 'progeny_audiotheme_document_head', 20 );
+
+
+/**
+ * Add additional HTML classes to posts.
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes List of HTML classes.
+ * @return array
+ */
+function progeny_audiotheme_post_class( $classes ) {
+	if ( is_singular( 'audiotheme_gig' ) && audiotheme_gig_has_venue() ) {
+		$classes[] = 'has-venue';
+	}
+
+	if ( is_singular( 'audiotheme_track' ) && get_audiotheme_track_thumbnail_id() ) {
+		$classes[] = 'has-post-thumbnail';
+	}
+
+	if ( is_singular( 'audiotheme_video' ) && get_audiotheme_video_url() ) {
+		$classes[] = 'has-post-video';
+	}
+
+	return $classes;
+}
+add_filter( 'post_class', 'progeny_audiotheme_post_class', 10 );
+
 
 /*
  * AudioTheme hooks.
@@ -32,47 +77,9 @@ add_action( 'after_setup_theme', 'progeny_audiotheme_setup', 11 );
  */
 
 /**
- * HTML to display before main AudioTheme content.
- *
- * @since 1.1.0
- */
-function progeny_audiotheme_before_main_content() {
-	echo '<div id="primary" class="content-area">';
-	echo '<main id="main" class="site-main" role="main">';
-
-}
-add_action( 'audiotheme_before_main_content', 'progeny_audiotheme_before_main_content' );
-
-/**
- * HTML to display after main AudioTheme content.
- *
- * @since 1.1.0
- */
-function progeny_audiotheme_after_main_content() {
-	echo '</div><!-- #primary -->';
-	echo '</main><!-- #main -->';
-}
-add_action( 'audiotheme_after_main_content', 'progeny_audiotheme_after_main_content' );
-
-/**
- * Adjust AudioTheme widget image sizes.
- *
- * @since 1.1.0
- *
- * @param array $size Image size (width and height).
- * @return array
- */
-function progeny_audiotheme_widget_image_size( $size ) {
-	return array( 612, 612 ); // sidebar width x 2
-}
-add_filter( 'audiotheme_widget_record_image_size', 'progeny_audiotheme_widget_image_size' );
-add_filter( 'audiotheme_widget_track_image_size', 'progeny_audiotheme_widget_image_size' );
-add_filter( 'audiotheme_widget_video_image_size', 'progeny_audiotheme_widget_image_size' );
-
-/**
  * Activate default archive setting fields.
  *
- * @since 1.1.0
+ * @since 1.0.0
  *
  * @param array $fields List of default fields to activate.
  * @param string $post_type Post type archive.
@@ -88,3 +95,33 @@ function progeny_audiotheme_archive_settings_fields( $fields, $post_type ) {
 	return $fields;
 }
 add_filter( 'audiotheme_archive_settings_fields', 'progeny_audiotheme_archive_settings_fields', 10, 2 );
+
+
+/*
+ * Template tags.
+ * -----------------------------------------------------------------------------
+ */
+
+function progeny_the_audiotheme_tickets_html( $before = '', $after = '' ) {
+	$gig_tickets_price = get_audiotheme_gig_tickets_price();
+	$gig_tickets_url = get_audiotheme_gig_tickets_url();
+
+	if ( ! $gig_tickets_price || ! $gig_tickets_url ) {
+		return;
+	}
+
+	$html = __( 'Tickets', 'progeny-mmxv' );
+
+	if ( $gig_tickets_price ) {
+		$html .= sprintf( ' <span class="gig-ticket-price" itemprop="price">%s</span>', $gig_tickets_price );
+	}
+
+	if ( $gig_tickets_url ) {
+		$html = sprintf( '<a class="gig-tickets-link button js-maybe-external" href="%s" itemprop="url">%s</a>',
+			$gig_tickets_price,
+			$html
+		);
+	}
+
+	echo $before . $html . $after;
+}

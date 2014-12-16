@@ -43,7 +43,7 @@ add_action( 'after_setup_theme', 'progeny_setup' );
 /**
  * Enqueue scripts and styles.
  *
- * @since 1.1.0
+ * @since 1.0.0
  */
 function progeny_enqueue_assets() {
 	// Load parent stylesheet.
