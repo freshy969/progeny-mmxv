@@ -12,34 +12,43 @@ get_header();
 <div id="primary" <?php audiotheme_archive_class( array( 'content-area', 'archive-video' ) ); ?>>
 	<main id="main" class="site-main" role="main">
 
-		<header class="page-header">
-			<?php the_audiotheme_archive_title( '<h1 class="page-title">', '<h1>' ); ?></h1>
-			<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
-		</header>
+		<?php if ( have_posts() ) : ?>
 
-		<div class="page-grid">
-			<div class="page-grid-inside">
+			<header class="page-header">
+				<?php the_audiotheme_archive_title( '<h1 class="page-title">', '<h1>' ); ?></h1>
+				<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
+			</header>
 
-				<?php while ( have_posts() ) : the_post(); ?>
+			<div class="page-grid">
+				<div class="page-grid-inside">
 
-					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-						<?php if ( has_post_thumbnail() ) : ?>
-							<a class="post-thumbnail" href="<?php the_permalink(); ?>" itemprop="url">
-								<?php the_post_thumbnail( 'record-thumbnail', array( 'itemprop' => 'image' ) ); ?>
-							</a>
-						<?php endif; ?>
+					<?php while ( have_posts() ) : the_post(); ?>
 
-						<header class="entry-header">
-							<?php the_title( '<h2 class="entry-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
-						</header>
-					</article>
+						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+							<?php if ( has_post_thumbnail() ) : ?>
+								<a class="post-thumbnail" href="<?php the_permalink(); ?>" itemprop="url">
+									<?php the_post_thumbnail( 'record-thumbnail', array( 'itemprop' => 'image' ) ); ?>
+								</a>
+							<?php endif; ?>
 
-				<?php endwhile; ?>
+							<header class="entry-header">
+								<?php the_title( '<h2 class="entry-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
+							</header>
+						</article>
 
+					<?php endwhile; ?>
+
+				</div>
 			</div>
-		</div>
 
-		<?php audiotheme_archive_nav(); ?>
+			<?php audiotheme_archive_nav(); ?>
+
+		<?php else : ?>
+
+			<?php get_template_part( 'audiotheme/parts/content-none', 'video' ); ?>
+
+		<?php endif; ?>
+
 	</main>
 </div>
 
