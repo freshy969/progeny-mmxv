@@ -44,7 +44,6 @@ function progeny_audiotheme_document_head() {
 }
 add_action( 'wp_head', 'progeny_audiotheme_document_head', 20 );
 
-
 /**
  * Add additional HTML classes to posts.
  *

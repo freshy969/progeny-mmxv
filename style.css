@@ -82,6 +82,11 @@
 	padding-top: 0;
 }
 
+.fluid-width-video-wrapper iframe {
+	width: 100% !important;
+	height: 100% !important;
+}
+
 
 /* Gig
 ------------------------------------------------------------------------------*/
