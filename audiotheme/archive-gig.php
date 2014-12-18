@@ -66,7 +66,13 @@ get_header();
 
 			</article>
 
-			<?php audiotheme_archive_nav(); ?>
+			<?php
+			the_posts_pagination( array(
+				'prev_text'          => __( 'Previous page', 'progeny-mmxv' ),
+				'next_text'          => __( 'Next page', 'progeny-mmxv' ),
+				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'progeny-mmxv' ) . ' </span>',
+			) );
+			?>
 
 		<?php else : ?>
 
