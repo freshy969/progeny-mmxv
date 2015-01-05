@@ -16,8 +16,8 @@
  */
 function progeny_credits() {
 	$text = sprintf( __( '%1$s WordPress theme by %2$s.', 'progeny-mmxv' ),
-		'<a href="http://audiotheme.com/view/progeny-mmxv/">Progeny MMXV</a>',
-		'<a href="http://audiotheme.com/">AudioTheme</a>'
+		'<a href="https://audiotheme.com/view/progeny-mmxv/">Progeny MMXV</a>',
+		'<a href="https://audiotheme.com/">AudioTheme</a>'
 	);
 
 	echo apply_filters( 'progeny_credits', $text );
