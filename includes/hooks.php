@@ -15,11 +15,7 @@
  * @return string
  */
 function progeny_credits() {
-	$text = sprintf( __( '%1$s WordPress theme by %2$s.', 'progeny-mmxv' ),
-		'<a href="https://audiotheme.com/view/progeny-mmxv/">Progeny MMXV</a>',
-		'<a href="https://audiotheme.com/">AudioTheme</a>'
-	);
-
-	echo apply_filters( 'progeny_credits', $text );
+	$text = apply_filters( 'progeny_credits', '' );
+	$text = apply_filters( 'footer_credits', $text );
 }
 add_action( 'twentyfifteen_credits', 'progeny_credits' );
