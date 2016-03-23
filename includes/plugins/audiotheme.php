@@ -109,7 +109,7 @@ function progeny_the_audiotheme_tickets_html( $before = '', $after = '' ) {
 		return;
 	}
 
-	$html = __( 'Tickets', 'progeny-mmxv' );
+	$html = esc_html__( 'Tickets', 'progeny-mmxv' );
 
 	if ( $gig_tickets_price ) {
 		$html .= sprintf( ' <span class="gig-ticket-price" itemprop="price">%s</span>', $gig_tickets_price );

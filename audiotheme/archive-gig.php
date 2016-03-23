@@ -34,7 +34,7 @@ get_header();
 						<?php else : ?>
 							<dt class="gig-venue">
 								<span class="gig-title"><?php _e( 'Gig venue details are missing or incomplete.', 'progeny-mmxv' ); ?></span>
-								<?php edit_post_link( __( 'Edit Gig', 'progeny-mmxv' ) ); ?>
+								<?php edit_post_link( esc_html__( 'Edit Gig', 'progeny-mmxv' ) ); ?>
 							</dt>
 						<?php endif; ?>
 
@@ -68,9 +68,9 @@ get_header();
 
 			<?php
 			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'progeny-mmxv' ),
-				'next_text'          => __( 'Next page', 'progeny-mmxv' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'progeny-mmxv' ) . ' </span>',
+				'prev_text'          => esc_html__( 'Previous page', 'progeny-mmxv' ),
+				'next_text'          => esc_html__( 'Next page', 'progeny-mmxv' ),
+				'before_page_number' => '<span class="meta-nav screen-reader-text">' . esc_html__( 'Page', 'progeny-mmxv' ) . ' </span>',
 			) );
 			?>
 

@@ -34,14 +34,14 @@ $venue = get_audiotheme_venue( $gig->venue->ID );
 						</span>
 
 						<span class="gig-time">
-							<?php echo get_audiotheme_gig_time( '', 'g:i A', false, array( 'empty_time' => __( 'TBD', 'progeny-mmxv' ) ) ); ?>
+							<?php echo get_audiotheme_gig_time( '', 'g:i A', false, array( 'empty_time' => esc_html__( 'TBD', 'progeny-mmxv' ) ) ); ?>
 						</span>
 					</h3>
 
 					<?php the_audiotheme_gig_description( '<div class="gig-description" itemprop="description">', '</div>' ); ?>
 
 					<?php
-					progeny_the_audiotheme_tickets_html( '<div class="gig-tickets" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><h4 class="screen-reader-text">' . __( 'Tickets', 'progeny-mmxv' ) . '</h4>',
+					progeny_the_audiotheme_tickets_html( '<div class="gig-tickets" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><h4 class="screen-reader-text">' . esc_html__( 'Tickets', 'progeny-mmxv' ) . '</h4>',
 						'</div>' );
 					?>
 				</header>
