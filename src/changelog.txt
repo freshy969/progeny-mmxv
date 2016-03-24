@@ -1,0 +1,6 @@
+= 1.1.0 =
+* Remove footer credits
+* Add support for Footer Credits plugin (https://wordpress.org/plugins/footer-credits/)
+
+= 1.0.0 =
+* Initial Release
