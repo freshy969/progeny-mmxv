@@ -24,15 +24,16 @@ get_header();
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/MusicAlbum">
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'page-grid-item' ); ?> itemscope itemtype="http://schema.org/MusicAlbum">
+
 							<?php if ( has_post_thumbnail() ) : ?>
-								<a class="post-thumbnail" href="<?php the_permalink(); ?>">
+								<a class="page-grid-item-thumbnail" href="<?php the_permalink(); ?>">
 									<?php the_post_thumbnail( 'record-thumbnail', array( 'itemprop' => 'image' ) ); ?>
 								</a>
 							<?php endif; ?>
 
-							<header class="entry-header">
-								<?php the_title( '<h2 class="entry-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '" itemprop="url">', '</a></h2>' ); ?>
+							<header class="page-grid-item-header entry-header">
+								<?php the_title( '<h2 class="page-grid-item-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '" itemprop="url">', '</a></h2>' ); ?>
 							</header>
 
 							<?php
@@ -41,7 +42,7 @@ get_header();
 
 							if ( $artist || $year ) :
 							?>
-								<div class="entry-content entry-meta">
+								<div class="page-grid-item-meta entry-content">
 									<?php if ( $artist ) : ?>
 										<span class="record-artist" itemprop="byArtist"><?php echo esc_html( $artist ); ?></span>
 									<?php endif; ?>
@@ -51,6 +52,7 @@ get_header();
 									<?php endif; ?>
 								</div>
 							<?php endif; ?>
+
 						</article>
 
 					<?php endwhile; ?>

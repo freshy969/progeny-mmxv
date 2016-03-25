@@ -24,15 +24,15 @@ get_header();
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'page-grid-item' ); ?>>
 							<?php if ( has_post_thumbnail() ) : ?>
-								<a class="post-thumbnail" href="<?php the_permalink(); ?>" itemprop="url">
+								<a class="page-grid-item-thumbnail" href="<?php the_permalink(); ?>" itemprop="url">
 									<?php the_post_thumbnail( 'record-thumbnail', array( 'itemprop' => 'image' ) ); ?>
 								</a>
 							<?php endif; ?>
 
-							<header class="entry-header">
-								<?php the_title( '<h2 class="entry-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
+							<header class="page-grid-item-header entry-header">
+								<?php the_title( '<h2 class="page-grid-item-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
 							</header>
 						</article>
 

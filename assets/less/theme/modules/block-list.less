@@ -4,10 +4,51 @@
 .page-list {
 	list-style: none;
 	margin: 0 7.6923%;
+}
 
-	.hentry {
-		&:first-child {
-			margin-top: 7.6923%;
+.page-list-item {
+	margin: 0;
+	padding: 7.6923% 7.6923% 4.6923%;
+
+	&:first-child {
+		margin-top: 7.6923%;
+	}
+}
+
+.page-list-item-date {
+	margin-bottom: 0;
+	position: absolute;
+	top: 0;
+
+	a {
+		background-color: #333;
+		color: #fff;
+		display: block;
+		font-family: "Noto Sans", sans-serif;
+		font-size: 1.2rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		line-height: 1.5;
+		padding: 0.25em 0.75em;
+		text-transform: uppercase;
+
+		&:hover,
+		&:focus {
+			color: #fff;
+			opacity: 0.7;
 		}
+	}
+}
+
+.page-list-item-title {
+	line-height: 1.210526316;
+}
+
+.page-list-item-content {
+	margin-top: 0.5em;
+	margin-bottom: 0;
+
+	> :last-child {
+		margin-bottom: 0;
 	}
 }

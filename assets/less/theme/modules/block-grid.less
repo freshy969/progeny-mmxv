@@ -3,38 +3,49 @@
 
 .page-grid {
 	margin: 0 7.6923%;
+}
 
-	.hentry {
-		display: inline-block;
-		float: left;
-		margin: 0;
-		padding-bottom: 4.25%;
-		vertical-align: top;
-		width: 100%;
+.page-grid-item {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	padding-bottom: 4.25%;
+	vertical-align: top;
+	width: 100%;
 
-		&:first-child {
-			margin-top: 7.6923%;
-		}
-
-		&:nth-of-type(n) {
-			clear: none;
-		}
-
-		&:nth-of-type(1n+1) {
-			clear: both;
-		}
+	&:first-child {
+		margin-top: 7.6923%;
 	}
 
-	.post-thumbnail {
-		margin-bottom: 10%;
+	&:nth-of-type(n) {
+		clear: none;
 	}
 
-	.entry-title {
-		font-size: 1.9rem;
-		margin-bottom: 0;
+	&:nth-of-type(1n+1) {
+		clear: both;
+	}
+}
+
+.page-grid-item-thumbnail {
+	display: block;
+	margin-bottom: 20px;
+
+	&:hover,
+	&:focus {
+		opacity: 0.85;
 	}
 
-	.entry-content {
-		padding-bottom: 0;
+	img {
+		display: block;
+		margin: 0 auto;
 	}
+}
+
+.page-grid-item-title {
+	font-size: 1.9rem;
+	margin-bottom: 0;
+}
+
+.page-grid-item-meta {
+	padding-bottom: 0;
 }

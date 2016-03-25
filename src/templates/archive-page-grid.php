@@ -37,14 +37,14 @@ get_header();
 
 					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'page-grid-item' ); ?>>
 
-							<a class="post-thumbnail" href="<?php the_permalink(); ?>">
+							<a class="page-grid-item-thumbnail" href="<?php the_permalink(); ?>">
 								<?php the_post_thumbnail( 'progeny-block-grid-16x9' ); ?>
 							</a>
 
-							<header class="entry-header">
-								<?php the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' ); ?>
+							<header class="page-grid-item-header entry-header">
+								<?php the_title( '<h1 class="page-grid-item-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' ); ?>
 							</header>
 
 						</article>

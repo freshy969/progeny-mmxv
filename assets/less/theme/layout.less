@@ -6,13 +6,11 @@
 /* 620px */
 
 @media screen and (min-width: 38.75em) {
-	.page-list .hentry {
-		padding-left: 9.0909%;
-		padding-right: 9.0909%;
-		padding-top: 6.75%;
+	.page-grid-inside {
+		margin: 0 -4%;
 	}
 
-	.page-grid .hentry {
+	.page-grid-item {
 		margin: 0 4%;
 		width: 42%;
 
@@ -25,8 +23,10 @@
 		}
 	}
 
-	.page-grid-inside {
-		margin: 0 -4%;
+	.page-list-item {
+		padding-left: 9.0909%;
+		padding-right: 9.0909%;
+		padding-top: 6.75%;
 	}
 
 	.record-links,
@@ -83,13 +83,16 @@
 	.page-list {
 		margin-left: 8.3333%;
 		margin-right: 8.3333%;
+	}
 
-		.hentry:first-child {
+	.page-grid-item,
+	.page-list-item {
+		&:first-child {
 			margin-top: 8.3333%;
 		}
 	}
 
-	.page-list .hentry {
+	.page-list-item {
 		padding-left: 10%;
 		padding-right: 10%;
 	}
@@ -117,9 +120,13 @@
 		padding-top: 0.4211em;
 	}
 
-	.label,
 	.entry-meta,
-	.entry-subtitle {
+	.entry-subtitle,
+	.page-grid-item-meta,
+	.page-list-item-meta,
+	.page-grid-item-subtitle,
+	.page-list-item-subtitle,
+	.track-download-link {
 		font-size: 1.6rem;
 	}
 }
@@ -131,18 +138,16 @@
 		margin: 0 -2%;
 	}
 
-	.page-grid {
-		.hentry {
-			margin: 0 2%;
-			width: 29.33333%;
+	.page-grid-item {
+		margin: 0 2%;
+		width: 29.33333%;
 
-			&:nth-of-type(n) {
-				clear: none;
-			}
+		&:nth-of-type(n) {
+			clear: none;
+		}
 
-			&:nth-of-type(3n+1) {
-				clear: both;
-			}
+		&:nth-of-type(3n+1) {
+			clear: both;
 		}
 	}
 }

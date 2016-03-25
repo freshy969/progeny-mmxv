@@ -83,7 +83,7 @@ get_header();
 									<a href="<?php echo esc_url( get_permalink( $track->ID ) ); ?>" itemprop="url" class="track-title"><span itemprop="name"><?php echo get_the_title( $track->ID ); ?></span></a>
 
 									<?php if ( $download_url = is_audiotheme_track_downloadable( $track->ID ) ) : ?>
-										(<a href="<?php echo esc_url( $download_url ); ?>" class="track-download-link label"><?php _e( 'Download', 'audiotheme' ); ?></a>)
+										(<a href="<?php echo esc_url( $download_url ); ?>" class="track-download-link"><?php _e( 'Download', 'audiotheme' ); ?></a>)
 									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>
