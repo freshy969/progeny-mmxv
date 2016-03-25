@@ -9,9 +9,14 @@
 	display: inline-block;
 	float: left;
 	margin: 0;
+	padding-top: 0;
 	padding-bottom: 4.25%;
 	vertical-align: top;
 	width: 100%;
+
+	&.has-post-thumbnail {
+		padding-top: 0;
+	}
 
 	&:first-child {
 		margin-top: 7.6923%;
@@ -29,6 +34,9 @@
 .page-grid-item-thumbnail {
 	display: block;
 	margin-bottom: 20px;
+	overflow: hidden;
+	padding-top: 100%;
+	position: relative;
 
 	&:hover,
 	&:focus {
@@ -37,7 +45,8 @@
 
 	img {
 		display: block;
-		margin: 0 auto;
+		position: absolute;
+		top: 0;
 	}
 }
 
@@ -48,4 +57,8 @@
 
 .page-grid-item-meta {
 	padding-bottom: 0;
+}
+
+.page-grid--16x9 .page-grid-item-thumbnail {
+	padding-top: 56.25%;
 }

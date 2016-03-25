@@ -31,7 +31,7 @@ get_header();
 		if ( $loop->have_posts() ) :
 		?>
 
-			<div id="posts-container" <?php progeny_posts_class( 'page-grid' ); ?>>
+			<div id="posts-container" <?php progeny_posts_class( array( 'page-grid', 'page-grid--16x9' ) ); ?>>
 
 				<div class="page-grid-inside">
 
