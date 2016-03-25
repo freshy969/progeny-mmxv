@@ -17,6 +17,9 @@
  * Load helper functions and libraries.
  */
 require( get_stylesheet_directory() . '/includes/hooks.php' );
+require( get_stylesheet_directory() . '/includes/template-tags.php' );
+require( get_stylesheet_directory() . '/includes/vendor/cedaro-theme/autoload.php' );
+progeny_theme()->load();
 
 /**
  * Load AudioTheme support or display a notice that it's needed.
@@ -37,6 +40,18 @@ function progeny_setup() {
 	// Add support for translating strings in this theme.
 	// @link http://codex.wordpress.org/Function_Reference/load_theme_textdomain
 	load_child_theme_textdomain( 'progeny-mmxv', get_stylesheet_directory() . '/languages' );
+
+	// Add post thumbnail size.
+	add_image_size( 'progeny-block-grid-16x9', 748, 420, array( 'center', 'top' ) );
+
+	// Register support for page type templates.
+	progeny_theme()->page_types->add_support()->register(
+		'grid',
+		array(
+			'archive_template' => 'templates/archive-page-grid.php',
+			'single_template'  => 'templates/single-page-grid.php',
+		)
+	);
 }
 add_action( 'after_setup_theme', 'progeny_setup' );
 
@@ -50,3 +65,21 @@ function progeny_enqueue_assets() {
 	wp_enqueue_style( 'progeny-parent-theme', get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'progeny_enqueue_assets', 20 );
+
+/**
+ * Wrapper for accessing the Cedaro_Theme instance.
+ *
+ * @since 1.1.0
+ *
+ * @return Cedaro_Theme
+ */
+function progeny_theme() {
+	static $instance;
+
+	if ( null === $instance ) {
+		Cedaro_Theme_Autoloader::register();
+		$instance = new Cedaro_Theme( array( 'prefix' => 'progeny-mmxv' ) );
+	}
+
+	return $instance;
+}
