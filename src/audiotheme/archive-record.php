@@ -19,21 +19,21 @@ get_header();
 				<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
 			</header>
 
-			<div id="posts-container" <?php progeny_posts_class( 'page-grid' ); ?>>
-				<div class="page-grid-inside">
+			<div id="posts-container" <?php progeny_posts_class( 'block-grid' ); ?>>
+				<div class="block-grid-inside">
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class( 'page-grid-item' ); ?> itemscope itemtype="http://schema.org/MusicAlbum">
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'block-grid-item' ); ?> itemscope itemtype="http://schema.org/MusicAlbum">
 
 							<?php if ( has_post_thumbnail() ) : ?>
-								<a class="page-grid-item-thumbnail" href="<?php the_permalink(); ?>">
+								<a class="block-grid-item-thumbnail" href="<?php the_permalink(); ?>">
 									<?php the_post_thumbnail( 'record-thumbnail', array( 'itemprop' => 'image' ) ); ?>
 								</a>
 							<?php endif; ?>
 
-							<header class="page-grid-item-header entry-header">
-								<?php the_title( '<h2 class="page-grid-item-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '" itemprop="url">', '</a></h2>' ); ?>
+							<header class="block-grid-item-header entry-header">
+								<?php the_title( '<h2 class="block-grid-item-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '" itemprop="url">', '</a></h2>' ); ?>
 							</header>
 
 							<?php
@@ -42,7 +42,7 @@ get_header();
 
 							if ( $artist || $year ) :
 							?>
-								<div class="page-grid-item-meta entry-content">
+								<div class="block-grid-item-meta entry-content">
 									<?php if ( $artist ) : ?>
 										<span class="record-artist" itemprop="byArtist"><?php echo esc_html( $artist ); ?></span>
 									<?php endif; ?>

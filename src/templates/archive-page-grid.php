@@ -31,20 +31,20 @@ get_header();
 		if ( $loop->have_posts() ) :
 		?>
 
-			<div id="posts-container" <?php progeny_posts_class( array( 'page-grid', 'page-grid--16x9' ) ); ?>>
+			<div id="posts-container" <?php progeny_posts_class( array( 'block-grid', 'block-grid--16x9' ) ); ?>>
 
-				<div class="page-grid-inside">
+				<div class="block-grid-inside">
 
 					<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class( 'page-grid-item' ); ?>>
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'block-grid-item' ); ?>>
 
-							<a class="page-grid-item-thumbnail" href="<?php the_permalink(); ?>">
+							<a class="block-grid-item-thumbnail" href="<?php the_permalink(); ?>">
 								<?php the_post_thumbnail( 'progeny-block-grid-16x9' ); ?>
 							</a>
 
-							<header class="page-grid-item-header entry-header">
-								<?php the_title( '<h1 class="page-grid-item-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' ); ?>
+							<header class="block-grid-item-header entry-header">
+								<?php the_title( '<h1 class="block-grid-item-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' ); ?>
 							</header>
 
 						</article>

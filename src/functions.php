@@ -54,8 +54,8 @@ function progeny_setup() {
 	$page_types->register(
 		'grid',
 		array(
-			'archive_template' => 'templates/archive-page-grid.php',
-			'single_template'  => 'templates/single-page-grid.php',
+			'archive_template' => 'templates/archive-block-grid.php',
+			'single_template'  => 'templates/single-block-grid.php',
 		)
 	);
 
