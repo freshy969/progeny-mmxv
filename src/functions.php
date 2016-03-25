@@ -64,7 +64,7 @@ function progeny_enqueue_assets() {
 	// Load parent stylesheet.
 	wp_enqueue_style( 'progeny-parent-theme', get_template_directory_uri() . '/style.css' );
 }
-add_action( 'wp_enqueue_scripts', 'progeny_enqueue_assets', 20 );
+add_action( 'wp_enqueue_scripts', 'progeny_enqueue_assets' );
 
 /**
  * Wrapper for accessing the Cedaro_Theme instance.
