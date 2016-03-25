@@ -7,45 +7,36 @@
  * videos by simply setting the archive page template and adding albums or
  * videos as child pages.
  *
- * @since 2.0.0
- *
- * @package Cedaro\Theme
- * @copyright Copyright (c) 2014, Cedaro
- * @license GPL-2.0+
+ * @package Progeny_MMXV
+ * @since 1.1.0
  */
 
 /**
  * Class for the page type feature.
  *
- * @package Cedaro\Theme
- * @since 2.0.0
+ * @package Progeny_MMXV
+ * @since 1.1.0
  */
-class Cedaro_Theme_PageTypes {
-	/**
-	 * The theme object.
-	 *
-	 * @since 2.0.0
-	 * @var Cedaro_Theme
-	 */
-	protected $theme;
-
+class Cedaro_PageTypes {
 	/**
 	 * List of page types and their args.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 * @var array
 	 */
 	protected $types = array();
 
 	/**
-	 * Constructor method.
+	 * Return a singleton instance of the class.
 	 *
-	 * @since 2.0.0
-	 *
-	 * @param Cedaro_Theme $theme Cedaro theme instance.
+	 * @return Cedaro_PageTypes
 	 */
-	public function __construct( Cedaro_Theme $theme ) {
-		$this->theme = $theme;
+	public static function factory( ) {
+		static $instance = false;
+		if ( ! $instance ) {
+			$instance = new self();
+		}
+		return $instance;
 	}
 
 	/*
@@ -55,21 +46,21 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Wire up the theme hooks.
 	 *
-	 * @since 3.0.0
+	 * @since 1.1.0
 	 *
 	 * @return $this
 	 */
 	public function add_support() {
 		add_filter( 'template_include', array( $this, 'template_overrides' ) );
 		add_filter( 'body_class', array( $this, 'body_classes' ) );
-		add_filter( $this->theme->prefix . '_archive_title', array( $this, 'archive_title' ), 10, 2 );
+		add_filter( 'progeny_archive_title', array( $this, 'archive_title' ), 10, 2 );
 		return $this;
 	}
 
 	/**
 	 * Register a page type.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param string $type Page type name.
 	 * @param array  $args Page type arguments.
@@ -80,9 +71,9 @@ class Cedaro_Theme_PageTypes {
 
 		$args = wp_parse_args( $args, array(
 			'archive_body_class' => '',
-			'archive_template'   => "templates/wpcom-archive-{$type}.php",
+			'archive_template'   => "templates/archive-{$type}.php",
 			'single_body_class'  => '',
-			'single_template'    => "templates/wpcom-single-{$type}.php",
+			'single_template'    => "templates/single-{$type}.php",
 		) );
 
 		$this->types[ $type ] = $args;
@@ -94,7 +85,7 @@ class Cedaro_Theme_PageTypes {
 	 *
 	 * Works on archive pages or single pages.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param int|WP_Post $post Optional. Post ID or object. Defaults to the
 	 *                          current global post.
@@ -121,7 +112,7 @@ class Cedaro_Theme_PageTypes {
 	 *   templates aren't registered as page templates).
 	 * - Verify the type if it is passed.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param string      $type Page type name.
 	 * @param int|WP_Post $post Optional. Post ID or object. Defaults to the
@@ -151,7 +142,7 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Determine if a page is the archive of a registered type.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param string      $type Page type name.
 	 * @param int|WP_Post $post Optional. Post ID or object. Defaults to the
@@ -176,7 +167,7 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Retrieve all registered page type archive templates.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @return array
 	 */
@@ -190,17 +181,17 @@ class Cedaro_Theme_PageTypes {
 		/**
 		 * List of page type archive templates.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 *
 		 * @param array $templates List of template files.
 		 */
-		return apply_filters( $this->theme->prefix . '_archive_page_templates', $templates );
+		return apply_filters( 'progeny_archive_page_templates', $templates );
 	}
 
 	/**
 	 * Retrieve the page type archive template for a specific page.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param int|WP_Post $post Optional. Post ID or object. Defaults to the
 	 *                          current global post.
@@ -225,7 +216,7 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Load the singular template for a registered page type.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param string $template Template file.
 	 * @return string
@@ -256,7 +247,7 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Add registered page type classes for the body element.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param array $classes List of HTML classes.
 	 * @return array
@@ -270,6 +261,7 @@ class Cedaro_Theme_PageTypes {
 			} elseif ( $this->is_type() && ! empty( $args['single_body_class'] ) ) {
 				$classes = array_merge( $classes, (array) $args['single_body_class'] );
 			}
+
 
 			$classes = array_unique( array_filter( $classes ) );
 		}
@@ -311,7 +303,7 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Filter the adjacent posts ORDER BY clause.
 	 *
-	 * @since 3.1.0
+	 * @since 1.1.0
 	 *
 	 * @see get_adjacent_post()
 	 *
@@ -331,7 +323,7 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Filter page type archive titles for WPCOM archive pages.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param string      $title Archive title.
 	 * @param int|WP_Post $post Post ID or object.
@@ -354,7 +346,7 @@ class Cedaro_Theme_PageTypes {
 	/**
 	 * Retrieve a page type argument.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @param string $arg Argument key.
 	 * @param string $type Optional. Page type name. Defaults to the page type

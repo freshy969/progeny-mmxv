@@ -18,8 +18,7 @@
  */
 require( get_stylesheet_directory() . '/includes/hooks.php' );
 require( get_stylesheet_directory() . '/includes/template-tags.php' );
-require( get_stylesheet_directory() . '/includes/vendor/cedaro-theme/autoload.php' );
-progeny_theme()->load();
+require( get_stylesheet_directory() . '/includes/class-pagetypes.php' );
 
 /**
  * Load AudioTheme support or display a notice that it's needed.
@@ -48,25 +47,13 @@ function progeny_setup() {
 	add_post_type_support( 'page', 'excerpt' );
 
 	// Get the theme object.
-	$page_types = progeny_theme()->page_types->add_support();
+	$page_types = Cedaro_PageTypes::factory()->add_support();
 
 	// Register the grid page templates.
-	$page_types->register(
-		'grid',
-		array(
-			'archive_template' => 'templates/archive-block-grid.php',
-			'single_template'  => 'templates/single-block-grid.php',
-		)
-	);
+	$page_types->register( 'grid' );
 
 	// Register the list page templates.
-	$page_types->register(
-		'list',
-		array(
-			'archive_template' => 'templates/archive-block-list.php',
-			'single_template'  => 'templates/single-block-list.php',
-		)
-	);
+	$page_types->register( 'list' );
 }
 add_action( 'after_setup_theme', 'progeny_setup' );
 
@@ -80,21 +67,3 @@ function progeny_enqueue_assets() {
 	wp_enqueue_style( 'progeny-parent-theme', get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'progeny_enqueue_assets' );
-
-/**
- * Wrapper for accessing the Cedaro_Theme instance.
- *
- * @since 1.1.0
- *
- * @return Cedaro_Theme
- */
-function progeny_theme() {
-	static $instance;
-
-	if ( null === $instance ) {
-		Cedaro_Theme_Autoloader::register();
-		$instance = new Cedaro_Theme( array( 'prefix' => 'progeny-mmxv' ) );
-	}
-
-	return $instance;
-}
