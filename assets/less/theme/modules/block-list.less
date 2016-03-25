@@ -8,11 +8,15 @@
 
 .page-list-item {
 	margin: 0;
-	padding: 7.6923% 7.6923% 4.6923%;
 
 	&:first-child {
 		margin-top: 7.6923%;
 	}
+}
+
+.page-list-item,
+.page-list-item.has-post-thumbnail {
+	padding: 4.6923% 7.6923%;
 }
 
 .page-list-item-date {
@@ -29,7 +33,7 @@
 		font-weight: 700;
 		letter-spacing: 0.04em;
 		line-height: 1.5;
-		padding: 0.25em 0.75em;
+		padding: 0.5em 1.25em;
 		text-transform: uppercase;
 
 		&:hover,
@@ -45,6 +49,7 @@
 }
 
 .page-list-item-content {
+	font-size: 1.6rem;
 	margin-top: 0.5em;
 	margin-bottom: 0;
 

@@ -44,12 +44,27 @@ function progeny_setup() {
 	// Add post thumbnail size.
 	add_image_size( 'progeny-block-grid-16x9', 748, 420, array( 'center', 'top' ) );
 
-	// Register support for page type templates.
-	progeny_theme()->page_types->add_support()->register(
+	// Add page excerpt support
+	add_post_type_support( 'page', 'excerpt' );
+
+	// Get the theme object.
+	$page_types = progeny_theme()->page_types->add_support();
+
+	// Register the grid page templates.
+	$page_types->register(
 		'grid',
 		array(
 			'archive_template' => 'templates/archive-page-grid.php',
 			'single_template'  => 'templates/single-page-grid.php',
+		)
+	);
+
+	// Register the list page templates.
+	$page_types->register(
+		'list',
+		array(
+			'archive_template' => 'templates/archive-page-list.php',
+			'single_template'  => 'templates/single-page-list.php',
 		)
 	);
 }
