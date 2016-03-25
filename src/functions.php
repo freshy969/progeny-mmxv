@@ -63,8 +63,8 @@ function progeny_setup() {
 	$page_types->register(
 		'list',
 		array(
-			'archive_template' => 'templates/archive-page-list.php',
-			'single_template'  => 'templates/single-page-list.php',
+			'archive_template' => 'templates/archive-block-list.php',
+			'single_template'  => 'templates/single-block-list.php',
 		)
 	);
 }

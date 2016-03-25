@@ -31,17 +31,17 @@ get_header();
 		if ( $loop->have_posts() ) :
 		?>
 
-			<div id="posts-container" <?php progeny_posts_class( 'page-list' ); ?>>
+			<div id="posts-container" <?php progeny_posts_class( 'block-list' ); ?>>
 
 				<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-					<article id="post-<?php the_ID(); ?>" <?php post_class( 'page-list-item' ); ?>>
+					<article id="post-<?php the_ID(); ?>" <?php post_class( 'block-list-item' ); ?>>
 
-						<?php the_title( '<h1 class="page-list-item-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' ); ?>
+						<?php the_title( '<h1 class="block-list-item-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' ); ?>
 
 						<?php if ( has_excerpt() ) : ?>
 
-							<div class="page-list-item-content">
+							<div class="block-list-item-content">
 								<?php the_excerpt(); ?>
 							</div>
 
