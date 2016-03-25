@@ -19,7 +19,7 @@ get_header();
 				<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
 			</header>
 
-			<article id="gigs" class="page-list gig-list vcalendar">
+			<article id="posts-container" <?php progeny_posts_class( array( 'page-list', 'gig-list', 'vcalendar' ) ); ?>>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 

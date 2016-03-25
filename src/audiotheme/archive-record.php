@@ -19,7 +19,7 @@ get_header();
 				<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
 			</header>
 
-			<div class="page-grid">
+			<div id="posts-container" <?php progeny_posts_class( 'page-grid' ); ?>>
 				<div class="page-grid-inside">
 
 					<?php while ( have_posts() ) : the_post(); ?>
