@@ -15,25 +15,27 @@ get_header();
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<?php the_audiotheme_archive_title( '<h1 class="page-title">', '<h1>' ); ?></h1>
+				<?php the_audiotheme_archive_title( '<h1 class="page-title">', '</h1>' ); ?></h1>
 				<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
 			</header>
 
-			<div id="posts-container" <?php progeny_posts_class( array( 'block-grid', 'block-grid--16x9' ) ); ?>>
+			<div id="posts-container" <?php progeny_posts_class(); ?>>
 				<div class="block-grid-inside">
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
 						<article id="post-<?php the_ID(); ?>" <?php post_class( 'block-grid-item' ); ?>>
+
 							<?php if ( has_post_thumbnail() ) : ?>
-								<a class="block-grid-item-thumbnail" href="<?php the_permalink(); ?>" itemprop="url">
-									<?php the_post_thumbnail( 'record-thumbnail', array( 'itemprop' => 'image' ) ); ?>
+								<a class="block-grid-item-thumbnail" href="<?php the_permalink(); ?>">
+									<?php the_post_thumbnail( 'video-thumbnail' ); ?>
 								</a>
 							<?php endif; ?>
 
-							<header class="block-grid-item-header entry-header">
-								<?php the_title( '<h2 class="block-grid-item-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
-							</header>
+							<div class="block-grid-item-header entry-header">
+								<?php the_title( '<h2 class="block-grid-item-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
+							</div>
+
 						</article>
 
 					<?php endwhile; ?>

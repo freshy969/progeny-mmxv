@@ -7,6 +7,13 @@
  */
 
 get_header();
+
+$artist = get_audiotheme_record_artist();
+$genre  = get_audiotheme_record_genre();
+$links  = get_audiotheme_record_links();
+$tracks = get_audiotheme_record_tracks();
+$year   = get_audiotheme_record_release_year();
+$download_url = is_audiotheme_track_downloadable( $track->ID );
 ?>
 
 <div id="primary" class="content-area single-record">
@@ -14,85 +21,77 @@ get_header();
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/MusicAlbum" role="article">
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
+
 				<?php if ( has_post_thumbnail() ) : ?>
 					<figure class="record-artwork">
-						<a class="post-thumbnail" href="<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>" itemprop="image">
+						<a class="post-thumbnail" href="<?php echo esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) ); ?>">
 							<?php the_post_thumbnail( 'record-thumbnail' ); ?>
 						</a>
 					</figure>
 				<?php endif; ?>
 
 				<header class="entry-header">
-					<?php the_title( '<h1 class="entry-title" itemprop="name">', '</h1>' ); ?>
+					<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-					<?php if ( $artist = get_audiotheme_record_artist() ) : ?>
-						<h2 class="entry-subtitle record-artist" itemprop="byArtist"><?php echo esc_html( $artist ); ?></h2>
+					<?php if ( ! empty( $artist ) ) : ?>
+						<h2 class="entry-subtitle record-artist"><?php echo esc_html( $artist ); ?></h2>
 					<?php endif; ?>
 
-					<?php
-					$year = get_audiotheme_record_release_year();
-					$genre = get_audiotheme_record_genre();
-
-					if ( $year || $genre ) :
-					?>
+					<?php if ( ! empty( $year ) || ! empty( $genre ) ) : ?>
 						<ul class="entry-meta">
-							<?php if ( $year ) : ?>
+							<?php if ( ! empty( $year ) ) : ?>
 								<li class="record-release">
-									<span class="screen-reader-text"><?php _e( 'Released', 'progeny-mmxv' ); ?></span>
-									<span itemprop="dateCreated"><?php echo esc_html( $year ); ?></span>
+									<span class="screen-reader-text"><?php esc_html_e( 'Released', 'progeny-mmxv' ); ?></span>
+									<?php echo esc_html( $year ); ?>
 								</li>
 							<?php endif; ?>
 
-							<?php if ( $genre ) : ?>
-								<li class="record-genere">
-									<span class="screen-reader-text"><?php _e( 'Genre', 'progeny-mmxv' ); ?></span>
-									<span itemprop="genre"><?php echo esc_html( $genre ); ?></span>
+							<?php if ( ! empty( $genre ) ) : ?>
+								<li class="record-genre">
+									<span class="screen-reader-text"><?php esc_html_e( 'Genre', 'progeny-mmxv' ); ?></span>
+									<?php echo esc_html( $genre ); ?>
 								</li>
 							<?php endif; ?>
 						</ul>
 					<?php endif; ?>
 				</header>
 
-				<?php if ( $links = get_audiotheme_record_links() ) : ?>
-
+				<?php if ( ! empty( $links ) ) : ?>
 					<div class="record-links">
-						<h2><?php _e( 'Purchase', 'progeny-mmxv' ); ?></h2>
+						<h2><?php esc_html_e( 'Purchase', 'progeny-mmxv' ); ?></h2>
 						<ul>
 							<?php
 							foreach( $links as $link ) {
-								printf( '<li><a href="%s" class="button"%s itemprop="url">%s</a></li>',
+								printf( '<li><a class="button" href="%1$s"%2$s>%3$s</a></li>',
 									esc_url( $link['url'] ),
 									( false === strpos( $link['url'], home_url() ) ) ? ' target="_blank"' : '',
-									$link['name']
+									esc_html( $link['name'] )
 								);
 							}
 							?>
 						</ul>
 					</div>
-
 				<?php endif; ?>
 
-				<?php if ( $tracks = get_audiotheme_record_tracks() ) : ?>
-
+				<?php if ( ! empty( $tracks ) ) : ?>
 					<div class="tracklist-section">
-						<h2><?php _e( 'Track List', 'progeny-mmxv' ); ?></h2>
+						<h2><?php esc_html_e( 'Track List', 'progeny-mmxv' ); ?></h2>
 						<ol class="tracklist">
 							<?php foreach ( $tracks as $track ) : ?>
-								<li id="track-<?php echo absint( $track->ID ); ?>" class="track" itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
-									<a href="<?php echo esc_url( get_permalink( $track->ID ) ); ?>" itemprop="url" class="track-title"><span itemprop="name"><?php echo get_the_title( $track->ID ); ?></span></a>
+								<li id="track-<?php echo absint( $track->ID ); ?>" class="track">
+									<a class="track-title" href="<?php echo esc_url( get_permalink( $track->ID ) ); ?>"><?php echo get_the_title( $track->ID ); ?></a>
 
-									<?php if ( $download_url = is_audiotheme_track_downloadable( $track->ID ) ) : ?>
-										(<a href="<?php echo esc_url( $download_url ); ?>" class="track-download-link"><?php _e( 'Download', 'audiotheme' ); ?></a>)
+									<?php if ( ! empty( $download_url ) ) : ?>
+										(<a class="track-download-link" href="<?php echo esc_url( $download_url ); ?>"><?php esc_html_e( 'Download', 'audiotheme' ); ?></a>)
 									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>
 						</ol>
 					</div>
-
 				<?php endif; ?>
 
-				<div class="entry-content" itemprop="description">
+				<div class="entry-content">
 					<?php the_content( '' ); ?>
 				</div>
 			</article>

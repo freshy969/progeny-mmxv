@@ -96,6 +96,62 @@ function progeny_audiotheme_archive_settings_fields( $fields, $post_type ) {
 add_filter( 'audiotheme_archive_settings_fields', 'progeny_audiotheme_archive_settings_fields', 10, 2 );
 
 
+/**
+ * Add classes to gig archive block grids.
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes Array of HTML classes for the gig archive posts wrapper.
+ * @return array
+ */
+function progeny_audiotheme_gig_posts_class( $classes ) {
+	if ( is_post_type_archive( 'audiotheme_gig' ) ) {
+		$classes[] = 'block-grid';
+		$classes[] = 'gig-list';
+		$classes[] = 'vcalendar';
+	}
+
+	return $classes;
+}
+add_filter( 'progeny_posts_class', 'progeny_audiotheme_gig_posts_class' );
+
+/**
+ * Add classes to record archive block grids.
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes Array of HTML classes for the record archive posts wrapper.
+ * @return array
+ */
+function progeny_audiotheme_record_posts_class( $classes ) {
+	if ( is_post_type_archive( 'audiotheme_record' ) ||	is_tax( 'audiotheme_record_type' ) ) {
+		$classes[] = 'block-grid';
+	}
+
+	return $classes;
+}
+add_filter( 'progeny_posts_class', 'progeny_audiotheme_record_posts_class' );
+
+/**
+ * Add classes to video archive block grids.
+ *
+ * @since 1.0.0
+ *
+ * @param array $classes Array of HTML classes for the video archive posts wrapper.
+ * @return array
+ */
+function progeny_audiotheme_video_posts_class( $classes ) {
+	if ( is_post_type_archive( 'audiotheme_video' ) || is_tax( 'audiotheme_video_category' ) ) {
+		$classes[] = 'block-grid';
+		$classes[] = 'block-grid--16x9';
+	}
+
+	return $classes;
+}
+add_filter( 'progeny_posts_class', 'progeny_audiotheme_video_posts_class' );
+
+
+
 /*
  * Template tags.
  * -----------------------------------------------------------------------------
@@ -103,21 +159,25 @@ add_filter( 'audiotheme_archive_settings_fields', 'progeny_audiotheme_archive_se
 
 function progeny_the_audiotheme_tickets_html( $before = '', $after = '' ) {
 	$gig_tickets_price = get_audiotheme_gig_tickets_price();
-	$gig_tickets_url = get_audiotheme_gig_tickets_url();
+	$gig_tickets_url   = get_audiotheme_gig_tickets_url();
 
-	if ( ! $gig_tickets_price || ! $gig_tickets_url ) {
+	if ( empty( $gig_tickets_price ) || empty( $gig_tickets_url ) ) {
 		return;
 	}
 
 	$html = esc_html__( 'Tickets', 'progeny-mmxv' );
 
-	if ( $gig_tickets_price ) {
-		$html .= sprintf( ' <span class="gig-ticket-price" itemprop="price">%s</span>', $gig_tickets_price );
+	if ( ! empty( $gig_tickets_price ) ) {
+		$html .= sprintf(
+			' <span class="gig-ticket-price">%s</span>',
+			esc_html( $gig_tickets_price )
+		);
 	}
 
-	if ( $gig_tickets_url ) {
-		$html = sprintf( '<a class="gig-tickets-link button js-maybe-external" href="%s" itemprop="url">%s</a>',
-			$gig_tickets_price,
+	if ( ! empty( $gig_tickets_url ) ) {
+		$html = sprintf(
+			'<a class="gig-tickets-link button js-maybe-external" href="%1$s">%2$s</a>',
+			esc_url( $gig_tickets_url ),
 			$html
 		);
 	}

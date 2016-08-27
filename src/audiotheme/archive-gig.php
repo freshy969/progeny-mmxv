@@ -15,40 +15,39 @@ get_header();
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<?php the_audiotheme_archive_title( '<h1 class="page-title">', '<h1>' ); ?></h1>
+				<?php the_audiotheme_archive_title( '<h1 class="page-title">', '</h1>' ); ?></h1>
 				<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
 			</header>
 
-			<article id="posts-container" <?php progeny_posts_class( array( 'block-list', 'gig-list', 'vcalendar' ) ); ?>>
+			<article id="posts-container" <?php progeny_posts_class(); ?>>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
-					<dl id="post-<?php the_ID(); ?>" <?php post_class( 'block-list-item' ); ?> itemscope itemtype="http://schema.org/MusicEvent">
+					<dl id="post-<?php the_ID(); ?>" <?php post_class( 'block-list-item' ); ?>>
 
 						<?php if ( audiotheme_gig_has_venue() ) : ?>
 							<dt class="gig-venue">
 								<h2 class="gig-title block-list-item-title">
-									<a href="<?php the_permalink(); ?>" itemprop="url"><?php echo get_audiotheme_gig_location(); ?></a>
+									<a href="<?php the_permalink(); ?>"><?php echo get_audiotheme_gig_location(); ?></a>
 								</h2>
 							</dt>
 						<?php else : ?>
 							<dt class="gig-venue">
-								<span class="gig-title block-list-item-title"><?php _e( 'Gig venue details are missing or incomplete.', 'progeny-mmxv' ); ?></span>
+								<span class="gig-title block-list-item-title"><?php esc_html_e( 'Gig venue details are missing or incomplete.', 'progeny-mmxv' ); ?></span>
 								<?php edit_post_link( esc_html__( 'Edit Gig', 'progeny-mmxv' ) ); ?>
 							</dt>
 						<?php endif; ?>
 
 						<dd class="gig-date block-list-item-date">
-							<meta content="<?php echo get_audiotheme_gig_time( 'c' ); ?>" itemprop="startDate">
 							<a href="<?php the_permalink(); ?>">
-								<time class="dtstart" datetime="<?php echo get_audiotheme_gig_time( 'c' ); ?>">
+								<time class="dtstart" datetime="<?php echo esc_attr( get_audiotheme_gig_time( 'c' ) ); ?>">
 									<?php echo get_audiotheme_gig_time( 'M d, Y' ); ?>
 								</time>
 							</a>
 						</dd>
 
 						<?php if ( audiotheme_gig_has_venue() ) : ?>
-							<dd class="gig-location location vcard block-list-item-subtitle" itemprop="location" itemscope itemtype="http://schema.org/EventVenue">
+							<dd class="gig-location location vcard block-list-item-subtitle">
 								<?php
 								the_audiotheme_venue_vcard( array(
 									'container'      => '',
@@ -59,7 +58,7 @@ get_header();
 							</dd>
 						<?php endif; ?>
 
-						<?php the_audiotheme_gig_description( '<dd class="gig-note block-list-item-content" itemprop="description">', '</dd>' ); ?>
+						<?php the_audiotheme_gig_description( '<dd class="gig-note block-list-item-content">', '</dd>' ); ?>
 					</dl>
 
 				<?php endwhile; ?>

@@ -17,10 +17,10 @@ get_header();
 		<?php while ( have_posts() ) : the_post(); ?>
 
 			<header class="page-header">
-				<?php the_title( '<h1 class="page-title" itemprop="headline">', '</h1>' ); ?>
+				<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
 
 				<?php if ( progeny_has_content() ) : ?>
-					<div class="page-content" itemprop="text"><?php the_content(); ?></div>
+					<div class="page-content"><?php the_content(); ?></div>
 				<?php endif; ?>
 			</header>
 
@@ -57,7 +57,7 @@ get_header();
 
 		<?php else : ?>
 
-			<p><?php progeny_page_type_notice(); ?></p>
+			<?php progeny_page_type_notice(); ?>
 
 		<?php endif; ?>
 

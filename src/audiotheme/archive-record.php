@@ -7,6 +7,9 @@
  */
 
 get_header();
+
+$artist = get_audiotheme_record_artist();
+$year   = get_audiotheme_record_release_year();
 ?>
 
 <div id="primary" <?php audiotheme_archive_class( array( 'content-area', 'archive-record' ) ); ?>>
@@ -15,40 +18,35 @@ get_header();
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<?php the_audiotheme_archive_title( '<h1 class="page-title">', '<h1>' ); ?></h1>
+				<?php the_audiotheme_archive_title( '<h1 class="page-title">', '</h1>' ); ?></h1>
 				<?php the_audiotheme_archive_description( '<div class="page-content">', '</div>' ); ?>
 			</header>
 
-			<div id="posts-container" <?php progeny_posts_class( 'block-grid' ); ?>>
+			<div id="posts-container" <?php progeny_posts_class(); ?>>
 				<div class="block-grid-inside">
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class( 'block-grid-item' ); ?> itemscope itemtype="http://schema.org/MusicAlbum">
+						<article id="post-<?php the_ID(); ?>" <?php post_class( 'block-grid-item' ); ?>>
 
 							<?php if ( has_post_thumbnail() ) : ?>
 								<a class="block-grid-item-thumbnail" href="<?php the_permalink(); ?>">
-									<?php the_post_thumbnail( 'record-thumbnail', array( 'itemprop' => 'image' ) ); ?>
+									<?php the_post_thumbnail( 'record-thumbnail' ); ?>
 								</a>
 							<?php endif; ?>
 
-							<header class="block-grid-item-header entry-header">
-								<?php the_title( '<h2 class="block-grid-item-title" itemprop="name"><a href="' . esc_url( get_permalink() ) . '" itemprop="url">', '</a></h2>' ); ?>
-							</header>
+							<div class="block-grid-item-header entry-header">
+								<?php the_title( '<h2 class="block-grid-item-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
+							</div>
 
-							<?php
-							$artist = get_audiotheme_record_artist();
-							$year = get_audiotheme_record_release_year();
-
-							if ( $artist || $year ) :
-							?>
+							<?php if ( ! empty( $artist ) || ! empty( $year ) ) :	?>
 								<div class="block-grid-item-meta entry-content">
-									<?php if ( $artist ) : ?>
-										<span class="record-artist" itemprop="byArtist"><?php echo esc_html( $artist ); ?></span>
+									<?php if ( ! empty( $artist ) ) : ?>
+										<span class="record-artist"><?php echo esc_html( $artist ); ?></span>
 									<?php endif; ?>
 
-									<?php if ( $year ) : ?>
-										<span class="record-release" itemprop="dateCreated">(<?php echo esc_html( $year ); ?>)</span>
+									<?php if ( ! empty( $year ) ) : ?>
+										<span class="record-release">(<?php echo esc_html( $year ); ?>)</span>
 									<?php endif; ?>
 								</div>
 							<?php endif; ?>
