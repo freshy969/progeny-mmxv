@@ -1,7 +1,7 @@
 {
   "name": "progeny-mmxv",
   "description": "Twenty Fifteen child theme by AudioTheme.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "GPL-2.0+",
   "author": "AudioTheme",
   "main": "Gruntfile.js",
@@ -9,6 +9,6 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "load-project-config": "^0.2.1",
-    "wp-theme-config": "git://github.com/cedaro/wp-theme-config.git#v0.6.0"
+    "wp-theme-config": "git://github.com/cedaro/wp-theme-config.git#v0.6.2"
   }
 }
