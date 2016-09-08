@@ -47,7 +47,7 @@ function progeny_setup() {
 	add_post_type_support( 'page', 'excerpt' );
 
 	// Get the theme object.
-	$page_types = Cedaro_PageTypes::factory()->add_support();
+	$page_types = Progeny_PageTypes::factory()->add_support();
 
 	// Register the grid page templates.
 	$page_types->register( 'grid' );

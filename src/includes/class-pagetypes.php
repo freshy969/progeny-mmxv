@@ -17,7 +17,7 @@
  * @package Progeny_MMXV
  * @since 1.1.0
  */
-class Cedaro_PageTypes {
+class Progeny_PageTypes {
 	/**
 	 * List of page types and their args.
 	 *
@@ -29,7 +29,7 @@ class Cedaro_PageTypes {
 	/**
 	 * Return a singleton instance of the class.
 	 *
-	 * @return Cedaro_PageTypes
+	 * @return Progeny_PageTypes
 	 */
 	public static function factory( ) {
 		static $instance = false;
