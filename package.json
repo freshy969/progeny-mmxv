@@ -5,7 +5,7 @@
   "license": "GPL-2.0+",
   "author": "AudioTheme",
   "main": "Gruntfile.js",
-  "repository": "cedaro/progeny-mmxv",
+  "repository": "audiotheme/progeny-mmxv",
   "devDependencies": {
     "grunt": "^1.0.1",
     "load-project-config": "^0.2.1",
