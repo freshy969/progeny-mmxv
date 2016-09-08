@@ -32,19 +32,19 @@ In short, AudioTheme is "WordPress for Music Makers".
 
 We create free and premium WordPress music themes and plugins for bands, musicians, and labels. Learn more at:
 
-http://audiotheme.com/
+https://audiotheme.com/
 
 === What is the AudioTheme Framework? ===
 
 The AudioTheme Framework is a WordPress plugin for powering music-oriented websites, allowing for easy management of gigs, discography, videos and more. Learn more at:
 
-http://audiotheme.com/view/audiotheme/
+https://audiotheme.com/view/audiotheme/
 
 === Is the AudioTheme Framework Required? ===
 
 No. The AudioTheme framework plugin is not required for the theme to work. However, to take advantage of the enhanced features and functionality of the Progeny MMXV child theme as described above, you'll want to download the AudioTheme Framework plugin. Download the AudioTheme framework plugin for free below:
 
-http://audiotheme.com/try/
+https://audiotheme.com/try/
 
 === Where can I download the AudioTheme Framework? ===
 
@@ -58,7 +58,7 @@ No. However, to continue receiving updates and support for the AudioTheme Framew
 
 For the time being, we'll be providing support via email. Feel free to submit any quesitons or comments via our contact page linked below:
 
-http://audiotheme.com/contact/
+https://audiotheme.com/contact/
 
 === Where do I submit an issue, bug, or feature request? ===
 
@@ -71,10 +71,11 @@ https://github.com/AudioTheme/progeny-mmxv/issues
 
 Progeny MMXV is a derivative of the Twenty Fifteen theme by the WordPress team:
 
-http://wordpress.org/themes/twentyfourteen
+https://wordpress.org/themes/twentyfifteen/
 Copyright: Automattic, automattic.com
 Licensed under GPLv2 or later
 
-Content and media used in Progeny MMXV's theme demo is credited here:
+Images used in the themes screenshot are from public YouTube videos. Each video 
+can be found in the theme demo here:
 
-http://demo.audiotheme.com/progeny-mmxv/credits/
+https://demo.audiotheme.com/progeny-mmxv/videos/
