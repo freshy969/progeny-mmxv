@@ -83,7 +83,7 @@ $download_url = is_audiotheme_track_downloadable( $track->ID );
 									<a class="track-title" href="<?php echo esc_url( get_permalink( $track->ID ) ); ?>"><?php echo get_the_title( $track->ID ); ?></a>
 
 									<?php if ( ! empty( $download_url ) ) : ?>
-										(<a class="track-download-link" href="<?php echo esc_url( $download_url ); ?>"><?php esc_html_e( 'Download', 'audiotheme' ); ?></a>)
+										(<a class="track-download-link" href="<?php echo esc_url( $download_url ); ?>"><?php esc_html_e( 'Download', 'progeny-mmxv' ); ?></a>)
 									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>
