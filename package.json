@@ -1,7 +1,7 @@
 {
   "name": "progeny-mmxv",
   "description": "Twenty Fifteen child theme by AudioTheme.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "GPL-2.0+",
   "author": "AudioTheme",
   "main": "Gruntfile.js",
