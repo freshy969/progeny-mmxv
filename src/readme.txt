@@ -71,9 +71,8 @@ https://github.com/AudioTheme/progeny-mmxv/issues
 
 Progeny MMXV is a derivative of the Twenty Fifteen theme by the WordPress team:
 
-https://wordpress.org/themes/twentyfifteen/
-Copyright: Automattic, automattic.com
-Licensed under GPLv2 or later
+Twenty Fifteen WordPress Theme, Copyright 2014-2016 WordPress.org & Automattic.com
+Twenty Fifteen is distributed under the terms of the GNU GPL
 
 Images used in the themes screenshot are from public YouTube videos. Each video 
 can be found in the theme demo here:
