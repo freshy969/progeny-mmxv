@@ -13,8 +13,8 @@
  * @since 1.0.0
  */
 function progeny_audiotheme_setup() {
-	add_image_size( 'record-thumbnail', 748, 748, true );
-	add_image_size( 'video-thumbnail', 748, 420, true );
+	add_image_size( 'progeny-record-thumbnail', 748, 748, true );
+	add_image_size( 'progeny-video-thumbnail', 748, 420, true );
 }
 add_action( 'after_setup_theme', 'progeny_audiotheme_setup', 11 );
 

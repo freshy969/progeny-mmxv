@@ -31,7 +31,7 @@ $year   = get_audiotheme_record_release_year();
 
 							<?php if ( has_post_thumbnail() ) : ?>
 								<a class="block-grid-item-thumbnail" href="<?php the_permalink(); ?>">
-									<?php the_post_thumbnail( 'record-thumbnail' ); ?>
+									<?php the_post_thumbnail( 'progeny-record-thumbnail' ); ?>
 								</a>
 							<?php endif; ?>
 

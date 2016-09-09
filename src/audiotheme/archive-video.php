@@ -28,7 +28,7 @@ get_header();
 
 							<?php if ( has_post_thumbnail() ) : ?>
 								<a class="block-grid-item-thumbnail" href="<?php the_permalink(); ?>">
-									<?php the_post_thumbnail( 'video-thumbnail' ); ?>
+									<?php the_post_thumbnail( 'progeny-video-thumbnail' ); ?>
 								</a>
 							<?php endif; ?>
 

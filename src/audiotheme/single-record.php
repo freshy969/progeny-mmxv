@@ -26,7 +26,7 @@ $download_url = is_audiotheme_track_downloadable( $track->ID );
 				<?php if ( has_post_thumbnail() ) : ?>
 					<figure class="record-artwork">
 						<a class="post-thumbnail" href="<?php echo esc_url( wp_get_attachment_url( get_post_thumbnail_id() ) ); ?>">
-							<?php the_post_thumbnail( 'record-thumbnail' ); ?>
+							<?php the_post_thumbnail( 'progeny-record-thumbnail' ); ?>
 						</a>
 					</figure>
 				<?php endif; ?>
