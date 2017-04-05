@@ -32,14 +32,20 @@ function progeny_has_content( $post_id = null ) {
 function progeny_page_type_query( $post = 0 ) {
 	$post = get_post( $post );
 
-	return new WP_Query( apply_filters( 'progeny_page_type_query_args', array(
+	$args = apply_filters( 'progeny_page_type_query_args', array(
 		'post_type'      => 'page',
 		'post_parent'    => $post->ID,
 		'posts_per_page' => 50,
 		'orderby'        => 'menu_order',
 		'order'          => 'ASC',
 		'no_found_rows'  => true,
-	) ) );
+	) );
+
+	if ( 'date' === $args['orderby'] ) {
+		$args['order'] = 'DESC';
+	}
+
+	return new WP_Query( $args );
 }
 
 /**
