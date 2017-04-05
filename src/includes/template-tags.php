@@ -48,21 +48,21 @@ function progeny_page_type_query( $post = 0 ) {
  * @since 1.0.0
  */
 function progeny_page_type_notice() {
-	echo esc_html( sprintf(
-		_x( 'There are currently not any %s available.', 'archive template label', 'progeny-mmxv' ),
+	$notice = sprintf(
+		_x( 'There are currently not any %s available.', 'archive template label', 'progeny' ),
 		esc_html( get_the_title() )
-	) );
+	);
 
 	if ( current_user_can( 'publish_posts' ) ) :
 		$notice = sprintf(
-			/* translators: there is a space at the begining of this sentence. */
-			_x( ' Create a <a href="%1$s">new page</a> with this page as its <a href="%2$s">parent</a>.', 'archive template label; create page link', 'progeny-mmxv' ),
+			/* translators: there is a space at the beginning of this sentence. */
+			_x( ' Create a <a href="%1$s">new page</a> with this page as its <a href="%2$s">parent</a>.', 'archive template label; create page link', 'progeny' ),
 			esc_url( add_query_arg( 'post_type', 'page', admin_url( 'post-new.php' ) ) ),
-			esc_url( 'https://en.support.wordpress.com/pages/page-attributes/#parent' )
+			esc_url( 'https://make.wordpress.org/support/user-manual/content/pages/page-attributes/' )
 		);
-
-		echo progeny_allowed_tags( wpautop( $notice ) ); // WPCS: XSS OK.
 	endif;
+
+	echo progeny_allowed_tags( wpautop( $notice ) ); // WPCS: XSS OK.
 }
 
 /**
