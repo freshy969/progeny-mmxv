@@ -54,6 +54,7 @@ $venue = get_audiotheme_venue( $gig->venue->ID );
 								<?php
 								the_audiotheme_venue_vcard( array(
 									'container'      => '',
+									'microdata'      => false,
 									'show_name_link' => false,
 									'show_phone'     => false,
 								) );
