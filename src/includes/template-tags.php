@@ -116,18 +116,20 @@ function progeny_allowed_tags( $string ) {
 			'class'	=> true,
 			'href'  => true,
 			'rel'   => true,
-			'title' => true,
+			'title'	=> true,
 		),
 		'br' => array(),
 		'h2' => array(
 			'class' => true,
 		),
-		'p' => array(),
+		'p' => array(
+			'class' => true,
+		),
 		'span' => array(
 			'class' => true,
 		),
 		'time' => array(
-			'class'    => true,
+			'class'	   => true,
 			'datetime' => true,
 		),
 	);
