@@ -20,7 +20,7 @@ Showcasing your videos doesn’t need to be a hassle. Progeny MMXV allows you to
 
 == Copyright ==
 
-Progeny MMXV, Copyright 2014 AudioTheme.com
+Progeny MMXV, Copyright 2017 AudioTheme.com
 Progeny MMXV is distributed under the terms of the GNU GPL
 
 
