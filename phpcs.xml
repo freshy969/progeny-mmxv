@@ -2,20 +2,21 @@
 <ruleset name="Progeny">
 	<file>./src</file>
 
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+
 	<arg name="extensions" value="php" />
 	<arg name="report-file" value="phpcs.log" />
 
 	<rule ref="WordPress">
+		<!--<exclude name="WordPress-VIP" />-->
 		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
 		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
-		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
-		<exclude name="Squiz.Commenting.FileComment.SpacingAfterComment" />
-		<exclude name="WordPress.Files.FileName.UnderscoresNotAllowed" />
 	</rule>
 
 	<rule ref="WordPress.XSS.EscapeOutput">
 		<properties>
 			<property name="customAutoEscapedFunctions" value="" type="array" />
+			<property name="customEscapingFunctions" value="progeny_allowed_tags" type="array" />
 		</properties>
 	</rule>
 </ruleset>
